@@ -5,4 +5,3 @@ desc 'drop into the Pry console'
 task :console do
     Pry.start
   end
-end
