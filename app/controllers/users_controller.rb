@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-    get '/faves' do
+    get '/users' do
         @users = User.all
         erb :'users/index'
     end

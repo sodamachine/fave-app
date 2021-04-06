@@ -1,4 +1,4 @@
-<h1>Edit fave</h1>
+<h1>Edit Fave</h1>
 
 
 <form action="/faves/<%=@fave.id %>" method="post">
@@ -9,3 +9,10 @@
   <input type="text" name="fave[quantity]"  value="<%=@fave.brand%>">
   <input type="submit">
 </form>
+
+<form action="/faves/<%=@fave.id%>" method="post">
+  <input type="hidden" name="_method" value="delete">
+  <input type="submit" value="Delete">
+</form>
+
+<a href="/faves">See your Faves</a>
