@@ -13,6 +13,9 @@ class FavesController < ApplicationController
         user = User.find_by(id: session[:user_id])
         fave = user.faves.create(params[:fave])
         redirect "faves/#{fave.id}"
+        else
+
+        redirect "faves/#{fave.id}"
     end
 
     get '/faves/:id' do
