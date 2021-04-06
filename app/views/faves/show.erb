@@ -2,9 +2,13 @@
 
 <p><%= @fave.name %> - <%= @fave.brand %></p>
 
+<% if check_owner(@fave) %>
 <form action="/faves/<%=@fave.id%>" method="post">
   <input type="hidden" name="_method" value="delete">
   <input type="submit" value="Delete">
 </form>
+
+<a href="/faves/<%=@fave.id%>/edit">Edit this Fave</a>
+<%end%>
 
 <a href="/faves">See all your Faves</a>

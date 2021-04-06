@@ -1,24 +1,23 @@
 class FavesController < ApplicationController
 
     get '/faves' do
+        redirect_if_not_logged_in
         @faves = Fave.all
         erb :'faves/index'
     end
 
     get '/faves/new' do
+        redirect_if_not_logged_in
         erb :'faves/new'
     end
 
     post '/faves' do
-        user = User.find_by(id: session[:user_id])
-        fave = user.faves.create(params[:fave])
-        redirect "faves/#{fave.id}"
-        else
-
+        fave = current_user.faves.create(params[:fave])
         redirect "faves/#{fave.id}"
     end
 
     get '/faves/:id' do
+        redirect_if_not_logged_in
         @fave = Fave.find_by(id: params[:id])
         if !@fave
             redirect '/faves'
@@ -27,23 +26,32 @@ class FavesController < ApplicationController
     end
 
     get '/faves/:id/edit' do
+        redirect_if_not_logged_in
         @fave = Fave.find_by(id: params[:id])
-        if !@fave
+        if check_owner(@fave)
           redirect '/faves'
         end
         erb :'faves/edit'
     end
     
     patch '/faves/:id' do
+        redirect_if_not_logged_in
         @fave = Fave.find_by(id: params[:id])
-        @fave.update(params[:fave])
+        if check_owner(@fave)
+            @fave.update(params[:fave])
+        end
         erb :'faves/show'
     end
 
     delete '/faves/:id' do
-        fave = Fave.find_by(id: params[:id])
-        fave.delete
-        redirect '/faves'
+        redirect_if_not_logged_in
+        @fave = Fave.find_by(id: params[:id])
+        if check_owner(@fave)
+            @fave.delete
+            redirect '/faves'
+        else
+            erb :'faves/show'
+        end
     end
 
 end

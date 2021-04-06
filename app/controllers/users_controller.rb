@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
 
     get '/users' do
+        redirect_if_not_logged_in
         @users = User.all
         erb :'users/index'
     end
@@ -23,6 +24,7 @@ class UsersController < ApplicationController
     end
 
     get '/users/:id' do
+        redirect_if_not_logged_in
         @user = User.find_by(id: params[:id])
         @faves = @user.faves
         erb :'users/show'
