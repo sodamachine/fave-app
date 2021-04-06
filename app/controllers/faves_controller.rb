@@ -13,6 +13,7 @@ class FavesController < ApplicationController
 
     post '/faves' do
         fave = current_user.faves.create(params[:fave])
+        #user input validation
         redirect "faves/#{fave.id}"
     end
 
