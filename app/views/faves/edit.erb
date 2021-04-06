@@ -1,0 +1,11 @@
+<h1>Edit fave</h1>
+
+
+<form action="/faves/<%=@fave.id %>" method="post">
+  <input type="hidden" name="_method" value="patch">
+  <label>Product Name: </label>
+  <input type="text" name="fave[name]" value="<%=@fave.name%>">
+  <label>Product Brand: </label>
+  <input type="text" name="fave[quantity]"  value="<%=@fave.brand%>">
+  <input type="submit">
+</form>
