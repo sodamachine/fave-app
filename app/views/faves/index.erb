@@ -2,6 +2,8 @@
 
 <ul>
 <% @faves.each do |fave| %>
-    <li><%=fave.name%></li>
+    <li><a href="/faves/<%=fave.id%>">
+    <%=fave.name%>
+    </a></li>
 <%end%>
 </ul>

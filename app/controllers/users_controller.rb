@@ -1,5 +1,10 @@
 class UsersController < ApplicationController
 
+    get '/faves' do
+        @users = User.all
+        erb :'users/index'
+    end
+    
     get '/signup' do
         if session[:user_id]  
           redirect "/users/#{session[:user_id]}"
