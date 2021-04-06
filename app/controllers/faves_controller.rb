@@ -34,6 +34,12 @@ class FavesController < ApplicationController
         @fave = Fave.find_by(id: params[:id])
         @fave.update(params[:fave])
         erb :'faves/show'
-      end
+    end
+
+    delete '/faves/:id' do
+        fave = Fave.find_by(id: params[:id])
+        fave.delete
+        redirect '/faves'
+    end
 
 end
