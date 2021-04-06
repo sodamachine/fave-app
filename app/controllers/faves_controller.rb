@@ -14,4 +14,9 @@ class FavesController < ApplicationController
         redirect 'faves/#{@fave.id}'
     end
 
+    get '/faves/:id' do
+        @fave = Fave.find_by(id: params[:id])
+        erb :'faves/show'
+    end
+
 end
