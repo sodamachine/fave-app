@@ -24,8 +24,8 @@ class ApplicationController < Sinatra::Base
             redirect '/login' unless current_user
         end
 
-        def check_owner(obj)
-            obj.user == current_user
+        def check_owner
+            current_fave && current_fave.user == current_user
         end
 
 end

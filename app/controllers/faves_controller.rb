@@ -26,7 +26,7 @@ class FavesController < ApplicationController
 
     get '/faves/:id/edit' do
         redirect_if_not_logged_in
-        if check_owner(current_fave)
+        if !check_owner
           redirect '/faves'
         end
         erb :'faves/edit'
@@ -34,7 +34,7 @@ class FavesController < ApplicationController
     
     patch '/faves/:id' do
         redirect_if_not_logged_in
-        if check_owner(current_fave)
+        if check_owner
             current_fave.update(params[:fave])
         end
         erb :'faves/show'
@@ -42,7 +42,7 @@ class FavesController < ApplicationController
 
     delete '/faves/:id' do
         redirect_if_not_logged_in
-        if check_owner(current_fave)
+        if check_owner
             current_fave.delete
             redirect '/faves'
         else
